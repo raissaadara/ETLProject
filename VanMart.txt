@@ -1,0 +1,115 @@
+MEASUREMENTS
+SalesMeasurement
+- [TotalEarning] = SUM(Quantity * GoodsSellingPrice)
+- [TotalGoodsSold] = SUM(Quantity)
+PurchaseMeasurement
+- [TotalPurchaseCost] = SUM(Quantity * GoodsBuyingPrice)
+- [TotalGoodsPurchased] = SUM(Quantity)
+ReturnMeasurement
+- [TotalGoodsReturned] = SUM(Quantity)
+- [NumberOfStaff] = COUNT(StaffID)
+SubscriptionMeasurement]
+- [TotalSubscriptionEarning] = SUM(BenefitPrice)
+- [NumberOfSubscriber] = COUNT(CustomerID)
+
+
+
+DIMENSION TABLE
+CustomerDimension
+- CustomerCode (PK)
+- CustomerID (BK)
+- CustomerName - fixed
+- CustomerDOB - fixed
+- CustomerGender - fixed
+- CustomerPhone - changing
+- CustomerAddress - changing
+
+StaffDimension
+- StaffCode (PK)
+- StaffID (BK)
+- StaffName - fixed
+- StaffDOB - fixed
+- StaffGender - fixed
+- StaffAddress - changing
+- StaffPhone - changing
+- StaffSalary - historical
+- ValidFrom
+- ValidTo
+
+GoodsDimension
+- GoodsCode (PK)
+- GoodsID (BK)
+- GoodsName - fixed
+- GoodsSellingPrice - historical
+- GoodsBuyingPrice - historical
+- GoodsWeight - fixed
+- ValidFrom
+- ValidTo
+
+SupplierDimension
+- SupplierCode (PK)
+- SupplierID (BK)
+- SupplierName - fixed
+- SupplierAddress - changing
+- SupplierPhone - changing
+- SupplierEmail - changing
+
+BranchDimension
+- BranchCode (PK)
+- BranchID (BK)
+- BranchAddress - changing
+- BranchPhone - changing
+- CityName - changing
+
+BenefitDimension
+- BenefitCode (PK)
+- BenefitID (BK)
+- BenefitName - fixed
+- BenefitPrice - historical
+- BenefitDescription - fixed
+- ValidFrom
+- ValidTo
+
+
+FACT TABLE
+SalesFact
+- TimeCode
+- GoodsCode
+- StaffCode
+- CustomerCode
+- BranchCode
+- TotalEarning
+- TotalGoodsSold
+
+PurchaseFact
+- TimeCode
+- GoodsCode
+- StaffCode
+- BranchCode
+- SupplierCode
+- TotalPurchaseCost
+- TotalGoodsPurchased
+
+ReturnFact
+- TimeCode
+- GoodsCode
+- StaffCode
+- BranchCode
+- SupplierCode
+- TotalGoodsReturned
+- NumberOfStaff
+
+SubscriptionFact
+- TimeCode
+- CustomerCode
+- StaffCode
+- BenefitCode
+- TotalSubscriptionEarning
+- NumberOfSubscriber
+
+
+
+
+
+
+
